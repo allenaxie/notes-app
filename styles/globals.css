@@ -1,14 +1,12 @@
+@tailwind base;
+@tailwind components;
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 * {
@@ -20,6 +18,14 @@ a {
   margin-bottom: -1px;
 }
 
-@tailwind base;
-@tailwind components;
+.deleteBtn {
+  background-color: rgb(232, 90, 90);
+}
+
+.deleteBtn:hover {
+  background-color: rgb(231, 112, 112);
+}
+
 @tailwind utilities;
+
+

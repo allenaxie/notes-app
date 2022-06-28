@@ -54,7 +54,6 @@ const NewNoteForm = () => {
     let errs = validate();
     setErrors(errs);
     setIsSubmitting(true);
-    // create new note
   }
 
   const validate = () => {
