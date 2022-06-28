@@ -1,8 +1,15 @@
 import Head from 'next/head';
 import dbConnect from '../utilities/dbConnect';
+import { useRouter } from 'next/router';
 
 const Home = ({ notes }) => {
   // console.log("notes:", notes);
+  const router = useRouter();
+
+  const handleView = (note) => {
+    console.log(note);
+    router.push(`/${note._id}`)
+  }
 
   return (
     <div>
@@ -13,8 +20,8 @@ const Home = ({ notes }) => {
       </Head>
 
       <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-6">
-        {notes.map((note) =>
-          <div className="card border flex flex-col justify-center m-5 cursor-pointer">
+        {notes.map((note,index) =>
+          <div key={`${note}-${index}`} className="card border flex flex-col justify-center m-5 cursor-pointer">
             <div className="flex justify-center mb-5 p-2 border-b-2 border-solid border-gray ">
               {note.title}
             </div>
@@ -22,10 +29,16 @@ const Home = ({ notes }) => {
               {note.description}
             </div>
             <div className="card-footer my-5 mx-2">
-              <button className="bg-cyan-600 hover:bg-cyan-500 text-white p-2 m-2 rounded w-1/5">
+              <button
+                onClick={() => handleView(note)}
+                className="bg-cyan-600 hover:bg-cyan-500 text-white p-2 m-2 rounded w-1/5"
+              >
                 View
               </button>
-              <button className="bg-cyan-600 hover:bg-cyan-500 text-white p-2 m-2 rounded w-1/5">
+              <button
+                onClick={handleView}
+                className="bg-cyan-600 hover:bg-cyan-500 text-white p-2 m-2 rounded w-1/5"
+              >
                 Edit
               </button>
             </div>
@@ -41,8 +54,7 @@ export default Home;
 export async function getStaticProps(context) {
   const res = await fetch('http://localhost:3000/api/notes');
   const { data } = await res.json();
-  // console.log(data);
-
+// console.log(data)
   return {
     props: {
       notes: data
