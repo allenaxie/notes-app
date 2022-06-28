@@ -2,7 +2,7 @@ import Head from 'next/head';
 import dbConnect from '../utilities/dbConnect';
 
 const Home = ({ notes }) => {
-  console.log("notes:", notes);
+  // console.log("notes:", notes);
 
   return (
     <div>
@@ -12,20 +12,20 @@ const Home = ({ notes }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6">
+      <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-6">
         {notes.map((note) =>
-          <div class="card border flex flex-col justify-center m-5 cursor-pointer">
-            <div class="flex justify-center mb-5 p-2 border-b-2 border-solid border-gray ">
+          <div className="card border flex flex-col justify-center m-5 cursor-pointer">
+            <div className="flex justify-center mb-5 p-2 border-b-2 border-solid border-gray ">
               {note.title}
             </div>
-            <div class="flex justify-center ">
+            <div className="flex justify-center p-2">
               {note.description}
             </div>
-            <div class="card-footer my-5 mx-2">
-              <button class="bg-cyan-600 hover:bg-cyan-500 text-white p-2 m-2 rounded w-1/5">
+            <div className="card-footer my-5 mx-2">
+              <button className="bg-cyan-600 hover:bg-cyan-500 text-white p-2 m-2 rounded w-1/5">
                 View
               </button>
-              <button class="bg-cyan-600 hover:bg-cyan-500 text-white p-2 m-2 rounded w-1/5">
+              <button className="bg-cyan-600 hover:bg-cyan-500 text-white p-2 m-2 rounded w-1/5">
                 Edit
               </button>
             </div>
