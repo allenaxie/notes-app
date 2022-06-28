@@ -7,7 +7,7 @@ const NewNoteForm = () => {
   })
 
   const handleSubmit = () => {
-
+    // create new note
   }
 
   return (

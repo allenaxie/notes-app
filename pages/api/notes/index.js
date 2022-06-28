@@ -12,7 +12,7 @@ export default async function handler (req,res) {
             try {
                 // find all notes
                 const notes = await Note.find({});
-                console.log(`notes: ${notes}`);
+                // console.log(`notes: ${notes}`);
                 res.status(200).json({success: true, data: notes});
             } catch (error) {
                 console.log(error);
