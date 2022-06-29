@@ -25,7 +25,7 @@ export default async function handler (req,res) {
     } else if (method === 'PUT') {
          try {
             // find and update note
-            const note = await Note.findOneAndUpdate(id, req.body, {
+            const note = await Note.findByIdAndUpdate(id, req.body, {
                 new: true,
                 runValidators: true,
             });

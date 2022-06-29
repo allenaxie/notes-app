@@ -3,12 +3,17 @@ import dbConnect from '../utilities/dbConnect';
 import { useRouter } from 'next/router';
 
 const Home = ({ notes }) => {
-  // console.log("notes:", notes);
   const router = useRouter();
 
   const handleView = (note) => {
-    console.log(note);
     router.push(`/${note._id}`)
+  }
+
+  const handleEdit = (note) => {
+    router.push({
+      pathname: `/${note._id}/edit`,
+      query: note,
+  })
   }
 
   return (
@@ -21,7 +26,7 @@ const Home = ({ notes }) => {
 
       <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-6">
         {notes.map((note,index) =>
-          <div key={`${note}-${index}`} className="card border flex flex-col justify-center m-5 cursor-pointer">
+          <div key={`${index}-${note._id}`} className="card border flex flex-col justify-center m-5 cursor-pointer">
             <div className="flex justify-center mb-5 p-2 border-b-2 border-solid border-gray ">
               {note.title}
             </div>
@@ -36,7 +41,7 @@ const Home = ({ notes }) => {
                 View
               </button>
               <button
-                onClick={handleView}
+                onClick={() => handleEdit(note)}
                 className="bg-cyan-600 hover:bg-cyan-500 text-white p-2 m-2 rounded w-1/5"
               >
                 Edit

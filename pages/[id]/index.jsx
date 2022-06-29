@@ -1,11 +1,28 @@
+import {useRouter} from 'next/router';
+
 const Note = ({ note }) => {
 
-    const handleEdit = () => {
+    const router = useRouter();
 
+    const handleEdit = (id) => {
+        router.push({
+            pathname: `/${id}/edit`,
+            query: note,
+        })
     }
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
+        // router.query.id is provided from NextJS
+        const noteId = router.query.id;
+        try {
+            const deleted = await fetch(`http://localhost:3000/api/notes/${noteId}`, {
+                method: "Delete"
+            });
 
+            router.push('/');
+        } catch(error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -19,7 +36,7 @@ const Note = ({ note }) => {
                 </div>
                 <div className="card-footer my-5 mx-2">
                     <button
-                        onClick={handleEdit}
+                        onClick={() => handleEdit(note._id)}
                         className="bg-cyan-600 hover:bg-cyan-500 text-white p-2 m-2 rounded w-1/5"
                     >
                         Edit
